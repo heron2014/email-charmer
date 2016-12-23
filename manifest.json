@@ -1,0 +1,22 @@
+{
+  "manifest_version": 2,
+  "name": "email-charmer",
+  "version": "1.0.0",
+  "description": "Write more sophisticated emails",
+  "icons": {
+    "48": "icon/icon-ec-48.png",
+    "128": "icon/icon-ec-128.png"
+  },
+  "browser_action": {
+    "default_title": "email-charmer"
+  },
+  "background": {
+    "persistent": false
+  },
+  "content_scripts": [{
+    "matches": ["https://mail.google.com/mail/*"],
+    "js": ["js/emailCharmer.js"],
+    "run_at":  "document_end"
+    }],
+  "permissions": [ "tabs", "*://*/*", "storage"]
+}

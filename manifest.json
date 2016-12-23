@@ -19,5 +19,5 @@
     "js": ["js/emailCharmer.js"],
     "run_at":  "document_end"
     }],
-  "permissions": [ "tabs", "*://*/*", "storage"]
+  "permissions": [ "tabs", "*://*/*"]
 }

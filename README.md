@@ -1,2 +1,2 @@
 # email-charmer
-Chrome extension that helps to write more sophisticated emails.
+Chrome extension that charm your email with more sophisticated words. 

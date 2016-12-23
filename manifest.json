@@ -8,10 +8,11 @@
     "128": "icon/icon-ec-128.png"
   },
   "browser_action": {
-    "default_title": "email-charmer"
+    "default_title": "Email Charmer"
   },
   "background": {
-    "persistent": false
+    "persistent": false,
+    "scripts": ["js/background.js"]
   },
   "content_scripts": [{
     "matches": ["https://mail.google.com/mail/*"],

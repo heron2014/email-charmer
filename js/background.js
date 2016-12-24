@@ -1,9 +1,12 @@
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
-    console.log(request);
     httpGetAsync(`https://wordsapiv1.p.mashape.com/words/${request.word}`, key, sendResponse, function(response) {
-      var res = JSON.parse(response).results[0].hasTypes[0];
-      sendResponse({ newWord: res });
+      var res = JSON.parse(response).results[0].synonyms;
+      if (res) {
+        sendResponse({ newWord: res });
+      } else {
+        sendResponse({ newWord: 'Not found' });
+      }
     });
     //http://stackoverflow.com/questions/20077487/chrome-extension-message-passing-response-not-sent
     return true;

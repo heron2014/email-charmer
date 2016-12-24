@@ -1,6 +1,8 @@
 (function () {
+  
   if (document.getElementsByClassName('Am Al editable LW-avf')[0]) {
-    document.getElementsByClassName('Am Al editable LW-avf')[0].addEventListener('click', function(e){
+    document.getElementsByClassName('Am Al editable LW-avf')[0].addEventListener('click', function (e) {
+
       s = window.getSelection();
       var range = s.getRangeAt(0);
       var node = s.anchorNode;
@@ -13,11 +15,11 @@
         range.setEnd(node,range.endOffset + 1);
       } while(range.toString().indexOf(' ') == -1 && range.toString().trim() != '');
 
-      var str = range.toString().trim();
-      console.log(str);
+      var str = range.toString().trim().toLowerCase();
+      var strippedWord = str.replace(/[^\w\s]/gi, '');
 
-      chrome.runtime.sendMessage({ word: str }, function(response) {
-        console.log('background response: ', response.newWord, response);
+      chrome.runtime.sendMessage({ word: strippedWord }, function (response) {
+        alert(response.newWord);
       });
     });
   }

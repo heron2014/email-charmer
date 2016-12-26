@@ -1,9 +1,9 @@
 (function () {
-  
+
   if (document.getElementsByClassName('Am Al editable LW-avf')[0]) {
     document.getElementsByClassName('Am Al editable LW-avf')[0].addEventListener('click', function (e) {
 
-      s = window.getSelection();
+      var s = window.getSelection();
       var range = s.getRangeAt(0);
       var node = s.anchorNode;
 
@@ -22,6 +22,64 @@
         alert(response.newWord);
       });
     });
+  }
+
+
+  var ALERT_TITLE = "Synonyms: ";
+  var ALERT_BUTTON_TEXT = "Close";
+
+  if(document.getElementById) {
+    window.alert = function(words) {
+      createCustomAlert(words);
+    }
+  }
+
+  function createCustomAlert(words) {
+
+    var d = document;
+
+    if(d.getElementById("modalContainer")) {
+      return;
+    }
+
+    var modalObj = d.getElementsByTagName("body")[0].appendChild(d.createElement("div"));
+    modalObj.id = "modalContainer";
+    modalObj.style.height = d.documentElement.scrollHeight + "px";
+
+    var alertObj = modalObj.appendChild(d.createElement("div"));
+    alertObj.id = "alertBox";
+
+    if(d.all && !window.opera) {
+      alertObj.style.top = document.documentElement.scrollTop + "px";
+    }
+
+    alertObj.style.left = (d.documentElement.scrollWidth - alertObj.offsetWidth)/2 + "px";
+    alertObj.style.visiblity="visible";
+
+    var h1 = alertObj.appendChild(d.createElement("h1"));
+    h1.appendChild(d.createTextNode(ALERT_TITLE));
+
+    msg = alertObj.appendChild(d.createElement("p"));
+  //msg.appendChild(d.createTextNode(words));
+    msg.innerHTML = words;
+
+    var btn = alertObj.appendChild(d.createElement("a"));
+    btn.id = "closeBtn";
+
+    btn.appendChild(d.createTextNode(ALERT_BUTTON_TEXT));
+    btn.href = "#";
+    btn.focus();
+
+    btn.onclick = function() {
+      removeCustomAlert();
+      return false;
+    }
+
+    alertObj.style.display = "block";
+  }
+
+  function removeCustomAlert() {
+    document.getElementsByTagName("body")[0].removeChild(document.getElementById("modalContainer"));
   }
 
 })();
